@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite this software when using its diagnostics in published work."
+title: "URDF Preflight"
+version: 0.1.0
+type: software
+authors:
+  - name: "Afloat16"
+license: MIT
+url: "https://github.com/Afloat16/PythonRobotics/tree/feat/urdf-preflight/tools/urdf-preflight"
+abstract: "Read-only, dependency-free URDF diagnostics and CI reports for robot model workflows."

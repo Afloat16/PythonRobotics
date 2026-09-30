@@ -1,0 +1,7 @@
+- id: urdf-preflight
+  name: URDF Preflight
+  entry: urdf-preflight
+  language: python
+  files: '\.urdf$'
+  types: [file]
+  description: Read-only static checks for expanded URDF robot models
