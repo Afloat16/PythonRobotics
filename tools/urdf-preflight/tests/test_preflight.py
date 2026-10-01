@@ -14,7 +14,6 @@ from unittest.mock import patch
 from urdf_preflight import check_file, check_text
 from urdf_preflight.cli import discover, main, read_baseline
 from urdf_preflight.math3 import principal_moments
-from urdf_preflight.model import parse_xml
 from urdf_preflight.reports import html_report, json_report, sarif_report, text_report
 
 
@@ -181,7 +180,7 @@ class CoreTests(unittest.TestCase):
         body = '<link name="a"/><link name="b"/>'
         for n, p, c in [('j1','a','b'), ('j2','b','a')]:
             body += f'<joint name="{n}" type="fixed"><parent link="{p}"/><child link="{c}"/></joint>'
-        self.assertTrue({'TREE003','TREE004'} <= codes(robot(body)))
+        self.assertLessEqual({'TREE003','TREE004'}, codes(robot(body)))
 
     def test_multiparent(self):
         body = '<link name="a"/><link name="b"/><link name="c"/>'
