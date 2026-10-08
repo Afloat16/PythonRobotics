@@ -16,6 +16,7 @@ sys.path.append(str(pathlib.Path(__file__).parent.parent))
 
 from ReedsSheppPath import reeds_shepp_path_planning
 from RRTStar.rrt_star import RRTStar
+from utils.angle import angle_mod
 
 show_animation = True
 
@@ -200,7 +201,7 @@ class RRTStarReedsShepp(RRTStar):
         # angle check
         final_goal_indexes = []
         for i in goal_indexes:
-            if abs(self.node_list[i].yaw - self.end.yaw) <= self.goal_yaw_th:
+            if abs(angle_mod(self.node_list[i].yaw - self.end.yaw)) <= self.goal_yaw_th:
                 final_goal_indexes.append(i)
 
         print("final_goal_indexes:", len(final_goal_indexes))

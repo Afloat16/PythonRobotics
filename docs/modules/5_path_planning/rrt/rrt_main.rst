@@ -30,6 +30,25 @@ RRT with dubins path
 
 Path planning for a car robot with RRT and dubins path planner.
 
+Goal heading tolerance
+^^^^^^^^^^^^^^^^^^^^^^
+
+For the Dubins, Reeds-Shepp, and closed-loop car planners, a heading belongs
+to a circle: adding a full turn does not change the vehicle's orientation.
+Goal selection therefore uses the shortest angular difference
+
+.. math::
+
+   \Delta\psi = \operatorname{atan2}\bigl(
+       \sin(\psi - \psi_{\mathrm{goal}}),
+       \cos(\psi - \psi_{\mathrm{goal}})\bigr).
+
+A candidate must satisfy both the position tolerance and the existing
+heading tolerance on :math:`|\Delta\psi|`. For example, headings just below
+:math:`\pi` and just above :math:`-\pi` are close, despite their raw difference
+being nearly a full turn. The closed-loop planner uses the same circular
+difference when checking the tracked trajectory's final heading.
+
 Code Link
 ^^^^^^^^^^
 
