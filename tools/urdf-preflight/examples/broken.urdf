@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="inspection_arm_with_faults" version="1.2">
+  <link name="world"/>
+  <link name="arm">
+    <inertial>
+      <mass value="-2"/>
+      <inertia ixx="1" iyy="1" izz="3" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual><geometry><mesh filename="meshes/not-installed.stl"/></geometry></visual>
+  </link>
+  <joint name="shoulder" type="revolute">
+    <parent link="world"/><child link="arm"/>
+    <axis xyz="0 0 0"/>
+    <limit lower="1.2" upper="-1.2" effort="12" velocity="1"/>
+  </joint>
+</robot>
