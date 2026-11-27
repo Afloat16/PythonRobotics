@@ -1,4 +1,4 @@
-name: GitHub Pages site update
+name: Documentation build
 on:
   push:
     branches:
@@ -6,25 +6,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
-      id-token: write
-      pages: write
+      contents: read
     steps:
     - name: Setup python
       uses: actions/setup-python@v6
     - name: Checkout
       uses: actions/checkout@master
       with:
-        fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+        fetch-depth: 0
     - name: Install dependencies
       run: |
         python --version
         python -m pip install --upgrade pip
         python -m pip install -r requirements/requirements.txt
-    - name: Build and Deploy
+    - name: Build documentation
       uses: sphinx-notes/pages@v3
       with:
-        requirements_path: ./docs/doc_requirements.txt            
+        requirements_path: ./docs/doc_requirements.txt
+        publish: false
